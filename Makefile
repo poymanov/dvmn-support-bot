@@ -1,5 +1,8 @@
-run:
-	docker-compose run --rm app python src/main.py
+tg-bot:
+	docker-compose run --rm app python src/tg_bot.py
+
+vk-bot:
+	docker-compose run --rm app python src/vk_bot.py
 
 learn:
 	docker-compose run --rm app python src/learning.py
