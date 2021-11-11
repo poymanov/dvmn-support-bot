@@ -3,9 +3,11 @@
 Репозиторий содержит боты для Telegram и группы ВК, который обрабатывает вопросы пользователей и с помощью [DialogFlow](https://dialogflow.cloud.google.com) (платформа для понимания естественного языка, которая предоставляет наиболее подходящие ответы на вопросы) предоставляет им ответы.
 
 Пример для Telegram:
+
 ![](docs/demo_tg_bot.gif)
 
 Пример для VK:
+
 ![](docs/demo_vk_bot.gif)
 
 [Демо-бот в Telegram](https://t.me/poymanov_dvmn_support_bot)
