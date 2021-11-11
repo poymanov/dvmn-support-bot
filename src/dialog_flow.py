@@ -5,22 +5,22 @@ DIALOG_FLOW_PROJECT_ID = os.environ['DIALOG_FLOW_PROJECT_ID']
 DIALOG_FLOW_LANGUAGE_CODE = os.environ['DIALOG_FLOW_LANGUAGE_CODE']
 
 
-def get_answer(input_text, session_id):
-    try:
-        session_client = dialogflow.SessionsClient()
-        session = session_client.session_path(DIALOG_FLOW_PROJECT_ID, session_id)
+def get_answer(input_text, session_id, return_fallback_message):
+    session_client = dialogflow.SessionsClient()
+    session = session_client.session_path(DIALOG_FLOW_PROJECT_ID, session_id)
 
-        text_input = dialogflow.TextInput(text=input_text, language_code=DIALOG_FLOW_LANGUAGE_CODE)
+    text_input = dialogflow.TextInput(text=input_text, language_code=DIALOG_FLOW_LANGUAGE_CODE)
 
-        query_input = dialogflow.QueryInput(text=text_input)
+    query_input = dialogflow.QueryInput(text=text_input)
 
-        response = session_client.detect_intent(
-            request={"session": session, "query_input": query_input}
-        )
+    response = session_client.detect_intent(
+        request={"session": session, "query_input": query_input}
+    )
 
+    if response.query_result.intent.is_fallback and return_fallback_message is False:
+        return None
+    else:
         return response.query_result.fulfillment_text
-    except Exception:
-        return 'Мы не можем ответить на ваш вопрос'
 
 
 def create_intent(display_name, training_phrases_parts, message_texts):

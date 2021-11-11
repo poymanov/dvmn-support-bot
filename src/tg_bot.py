@@ -11,8 +11,8 @@ def start(update, context):
 
 
 def answer(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id,
-                             text=get_answer(update.message.text, update.effective_chat.id))
+    answer = get_answer(update.message.text, update.effective_chat.id, True)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=answer)
 
 
 def main():
