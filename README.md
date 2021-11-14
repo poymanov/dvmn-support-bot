@@ -1,6 +1,8 @@
 # Бот службы поддержки
 
-Репозиторий содержит боты для Telegram и группы ВК, который обрабатывает вопросы пользователей и с помощью [DialogFlow](https://dialogflow.cloud.google.com) (платформа для понимания естественного языка, которая предоставляет наиболее подходящие ответы на вопросы) предоставляет им ответы.
+Репозиторий содержит боты для Telegram и группы ВК, который обрабатывает вопросы пользователей и с
+помощью [DialogFlow](https://dialogflow.cloud.google.com) (платформа для понимания естественного языка, которая
+предоставляет наиболее подходящие ответы на вопросы) предоставляет им ответы.
 
 Пример для Telegram:
 
@@ -19,6 +21,7 @@
 Для работы приложения требуется **Docker** и **Docker Compose**.
 
 Для инициализации приложения выполнить команду:
+
 ```
 make init
 ```
@@ -27,52 +30,41 @@ make init
 
 В файле `.env` заполнить:
 
-Токен бота в Telegram для логирования ошибок:
-```
-TELEGRAM_LOGGER_BOT_TOKEN=
-```
+|Параметр|Описание |
+|-----------|-----------|
+|*TELEGRAM_LOGGER_BOT_TOKEN*|Токен бота в Telegram для логирования ошибок|
+|*TELEGRAM_LOGGER_USER_CHAT_ID*|ID пользователя, которому будут приходить ошибки ботов в Telegram|
+|*TELEGRAM_BOT_TOKEN*|Токен бота поддержки в Telegram|
+|*VK_GROUP_TOKEN*|Токен бота поддержки в VK|
+|*DIALOG_FLOW_PROJECT_ID*|ID проекта с вариантами вопросов/ответов в [DialogFlow](https://dialogflow.cloud.google.com):|
 
-ID пользователя, которому будут приходить ошибки ботов в Telegram:
-```
-TELEGRAM_LOGGER_USER_CHAT_ID=
-```
-
-Токен бота поддержки в Telegram:
+Выполнить первичное обучение ботов через [DialogFlow](https://dialogflow.cloud.google.com):
 
 ```
-TELEGRAM_BOT_TOKEN=
+make learn
 ```
-
-Токен бота поддержки в VK:
-
-```
-VK_GROUP_TOKEN=
-```
-
-ID проекта с вариантами вопросов/ответов в [DialogFlow](https://dialogflow.cloud.google.com):
-
-```
-DIALOG_FLOW_PROJECT_ID=
-```
-
 
 ### Запуск
 
 Telegram бот:
+
 ```
 make tg-bot 
 ```
 
 Бот группы VK:
+
 ```
 make vk-bot
 ```
 
 Удаление всех временных файлов приложения:
+
 ```
 make flush
 ```
 
 ### Цель проекта
 
-Код написан в образовательных целях на онлайн-курсе [dvmn.org](https://dvmn.org/), в рамках модуля [Чат-боты на Python](https://dvmn.org/modules/chat-bots).
+Код написан в образовательных целях на онлайн-курсе [dvmn.org](https://dvmn.org/), в рамках
+модуля [Чат-боты на Python](https://dvmn.org/modules/chat-bots).
