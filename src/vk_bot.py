@@ -2,13 +2,11 @@ import os
 import logging
 import random
 import vk_api as vk
-import telegram
 from vk_api.longpoll import VkLongPoll, VkEventType
 from dialog_flow import get_answer
+from tg_logger import set_logger
 
 VK_GROUP_TOKEN = os.environ['VK_GROUP_TOKEN']
-TELEGRAM_LOGGER_BOT_TOKEN = os.environ['TELEGRAM_LOGGER_BOT_TOKEN']
-TELEGRAM_LOGGER_USER_CHAT_ID = os.environ['TELEGRAM_LOGGER_USER_CHAT_ID']
 
 logger = logging.getLogger(__file__)
 
@@ -46,9 +44,7 @@ def start_bot():
 
 
 def main():
-    logger_bot = telegram.Bot(token=TELEGRAM_LOGGER_BOT_TOKEN)
-    logger.setLevel(logging.WARNING)
-    logger.addHandler(TelegramLogsHandler(logger_bot, TELEGRAM_LOGGER_USER_CHAT_ID))
+    set_logger(logger)
 
     try:
         logger.warning('Бот группы ВК запущен')
