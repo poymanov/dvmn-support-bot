@@ -25,7 +25,7 @@ class TelegramLogsHandler(logging.Handler):
 
 
 def answer_handler(event, vk_api):
-    answer = get_answer(event.text, event.user_id, False)
+    answer = get_answer(event.text, 'vk-{}'.format(event.user_id), False)
 
     if answer is not None:
         vk_api.messages.send(

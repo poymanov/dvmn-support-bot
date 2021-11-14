@@ -28,7 +28,7 @@ def start_command_handler(update, context):
 
 def answer_handler(update, context):
     try:
-        answer = get_answer(update.message.text, update.effective_chat.id, True)
+        answer = get_answer(update.message.text, 'tg-{}'.format(update.effective_chat.id), True)
         context.bot.send_message(chat_id=update.effective_chat.id, text=answer)
     except:
         logger.exception('Telegram-бот упал с ошибкой')
