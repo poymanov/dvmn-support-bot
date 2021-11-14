@@ -19,8 +19,8 @@ def get_answer(input_text, session_id, return_fallback_message):
 
     if response.query_result.intent.is_fallback and return_fallback_message is False:
         return None
-    else:
-        return response.query_result.fulfillment_text
+
+    return response.query_result.fulfillment_text
 
 
 def create_intent(display_name, training_phrases_parts, message_texts):
