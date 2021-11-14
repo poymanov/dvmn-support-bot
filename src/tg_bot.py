@@ -6,7 +6,6 @@ from tg_logger import set_logger
 
 TELEGRAM_BOT_TOKEN = os.environ['TELEGRAM_BOT_TOKEN']
 
-
 logger = logging.getLogger(__file__)
 
 
@@ -15,11 +14,12 @@ def start_command_handler(update, context):
 
 
 def answer_handler(update, context):
-    try:
-        answer = get_answer(update.message.text, 'tg-{}'.format(update.effective_chat.id), True)
-        context.bot.send_message(chat_id=update.effective_chat.id, text=answer)
-    except:
-        logger.exception('Telegram-бот упал с ошибкой')
+    answer = get_answer(update.message.text, 'tg-{}'.format(update.effective_chat.id), True)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=answer)
+
+
+def error_handler():
+    logger.exception('Telegram-бот упал с ошибкой')
 
 
 def start_bot():
@@ -33,15 +33,14 @@ def start_bot():
     echo_handler = MessageHandler(Filters.text & (~Filters.command), answer_handler)
     dispatcher.add_handler(echo_handler)
 
+    dispatcher.add_error_handler(error_handler)
+
 
 def main():
     set_logger(logger)
 
-    try:
-        start_bot()
-        logger.warning('Telegram-бот запущен')
-    except:
-        logger.exception('Telegram-бот упал с ошибкой')
+    start_bot()
+    logger.warning('Telegram-бот запущен')
 
 
 if __name__ == '__main__':
