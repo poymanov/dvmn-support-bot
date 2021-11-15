@@ -17,7 +17,7 @@ def get_answer(input_text, session_id, return_fallback_message):
         request={"session": session, "query_input": query_input}
     )
 
-    if response.query_result.intent.is_fallback and return_fallback_message is False:
+    if response.query_result.intent.is_fallback and not return_fallback_message:
         return None
 
     return response.query_result.fulfillment_text
