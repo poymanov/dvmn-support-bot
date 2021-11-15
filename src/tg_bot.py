@@ -18,7 +18,7 @@ def answer_handler(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=answer)
 
 
-def error_handler():
+def error_handler(update, context):
     logger.exception('Telegram-бот упал с ошибкой')
 
 
